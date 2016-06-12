@@ -6,7 +6,10 @@
     <uses-sdk
         android:minSdkVersion="17"
         android:targetSdkVersion="20" />
-
+	
+    <permission android:protectionLevel="dangerous" android:name="scos.permission.ACCESSSCOS" />  
+    
+    
     <application
         android:allowBackup="true"
         android:icon="@drawable/launch"
@@ -21,6 +24,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <activity
+            android:name = "es.source.code.activity.MainScreen"
+            android:label="@string/welcome"
+            android:permission="scos.permission.ACCESSSCOS" >
+            <intent-filter>
+                <action android:name="android.intent.action.SCOSMAIN"/>
+                
+                <category android:name="android.intent.category.SCOSLAUNCHER"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        
+        <activity
+            android:name="es.source.code.activity.LoginOrRegister" >
+        </activity>
+        
     </application>
 
 </manifest>

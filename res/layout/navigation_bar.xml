@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+    
+    <LinearLayout
+        android:id="@+id/ly_order"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical" >
+        
+       <ImageView
+            android:id="@+id/iv_order"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/order" />
+        
+       <TextView 
+           android:id="@+id/tv_order"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="@string/order"
+           android:textColor="#008000"
+           android:textSize="12sp" />
+	</LinearLayout>
+	
+    <LinearLayout
+        android:id="@+id/ly_form"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical" >
+        
+        <ImageView
+            android:id="@+id/iv_form"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/form" />
+        
+       <TextView 
+           android:id="@+id/tv_form"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="@string/form"
+           android:textColor="#008000"
+           android:textSize="12sp" />
+       
+	</LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/ly_login"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical" >
+        
+        <ImageView
+            android:id="@+id/iv_login"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/login" />
+        
+       <TextView 
+           android:id="@+id/tv_login"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="@string/loginOrRegister"
+           android:textColor="#008000"
+           android:textSize="12sp" />
+       
+	</LinearLayout>   
+
+    <LinearLayout
+        android:id="@+id/ly_help"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical" >
+        
+        <ImageView
+            android:id="@+id/iv_help"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/help" />
+        
+       <TextView 
+           android:id="@+id/tv_help"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="@string/help"
+           android:textColor="#008000"
+           android:textSize="12sp" />
+       
+	</LinearLayout>
+	
+</LinearLayout>
