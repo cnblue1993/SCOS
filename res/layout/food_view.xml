@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        android:orientation="vertical">
+        
+	    <RadioGroup
+        android:id="@+id/rg_food_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/rb_cold"
+            style="@style/tab_menu_item"
+            android:text="@string/cold" 
+            android:textColor="@drawable/color_radiobutton"  
+            android:background="@drawable/radio_group_selector"/>
+
+        <RadioButton
+            android:id="@+id/rb_hot"
+            style="@style/tab_menu_item"
+            android:text="@string/hot" 
+            android:textColor="@drawable/color_radiobutton"  
+            android:background="@drawable/radio_group_selector"/>
+
+        <RadioButton
+            android:id="@+id/rb_sea"
+            style="@style/tab_menu_item"
+            android:text="@string/sea" 
+            android:textColor="@drawable/color_radiobutton"  
+            android:background="@drawable/radio_group_selector"/>
+
+        <RadioButton
+            android:id="@+id/rb_drink"
+            style="@style/tab_menu_item"
+            android:text="@string/drink" 
+            android:textColor="@drawable/color_radiobutton"  
+            android:background="@drawable/radio_group_selector"/>
+
+    </RadioGroup>
+
+    <View
+        android:id="@+id/div_tab_bar"
+        android:layout_width="match_parent"
+        android:layout_height="2px" />
+    
+    </LinearLayout>
+	<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        android:layout_weight="1" >
+        
+	    <android.support.v4.view.ViewPager
+        android:id="@+id/vpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+	    
+    </LinearLayout>
+    
+         <GridView
+        	android:id="@+id/navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:numColumns="4"
+            android:verticalSpacing="10dp"
+            android:horizontalSpacing="10dp" >
+        </GridView>
+        
+
+</LinearLayout>
