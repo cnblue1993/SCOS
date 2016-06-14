@@ -5,33 +5,28 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.ustc.scos.R;
-
-import es.source.code.activity.MainScreen.ItemClickListener;
-import es.source.code.activity.MainScreen.MyAdapter;
-import android.app.Activity;
-import android.content.Context;
+import android.app.ActionBar;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.util.DisplayMetrics;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
+
+import com.ustc.scos.R;
+
+import es.source.code.model.User;
 
 public class FoodView extends FragmentActivity {
 
@@ -42,6 +37,9 @@ public class FoodView extends FragmentActivity {
 	private String []iconName =  {"点菜", "查看订单", "登录/注册", "系统帮助"};
 	
 	private boolean navigationState = true;
+
+	
+	private User user;
 	
 	//-----------------------------------------------------------------------------------------
 	//几个代表页面的常量
@@ -68,6 +66,8 @@ public class FoodView extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.food_view);
    
+		ActionBar actionBar = getActionBar();
+		actionBar.setDisplayHomeAsUpEnabled(true);
 		
 		navigationView = (GridView) findViewById(R.id.navigation);
 		
@@ -82,6 +82,9 @@ public class FoodView extends FragmentActivity {
         
         rb_cold.setChecked(true);
 		
+        Intent intent = getIntent();
+        user=(User)intent.getSerializableExtra("user");
+
 	}
 	
 	private void findById(){
@@ -180,12 +183,15 @@ public class FoodView extends FragmentActivity {
 	//The position of the view in the adapter ,The row id of the item that was clicked 
 	class  ItemClickListener implements OnItemClickListener{     
 		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {     
+			Bundle bundle = new Bundle();
+        	bundle.putSerializable("user",user);
 			switch (icon[arg2]) {
 			case R.drawable.order:
-				
 				break;
 			case R.drawable.form:
-				
+				Intent form_intent = new Intent(FoodView.this, FoodOrderView.class);
+            	form_intent.putExtras(bundle);
+				startActivity(form_intent);
 				break;
 			case R.drawable.login:
 				Intent login_intent = new Intent(FoodView.this,LoginOrRegister.class);
@@ -193,8 +199,6 @@ public class FoodView extends FragmentActivity {
 				break;
 			case R.drawable.help:
 				
-				break;
-			default:
 				break;
 			}
 		}
@@ -229,5 +233,45 @@ public class FoodView extends FragmentActivity {
 		// TODO Auto-generated method stub
 		super.onStop();
 	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// TODO Auto-generated method stub
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.order, menu);
+		
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		Bundle bundle = new Bundle();
+		bundle.putSerializable("user",user);
+		switch (item.getItemId()) {
+		
+			case R.id.order_food:
+				Intent food_order_intent = new Intent(FoodView.this, FoodOrderView.class);
+	        	food_order_intent.putExtras(bundle);
+	        	food_order_intent.putExtra("isorder", false);
+				startActivity(food_order_intent);
+				
+				break;
+			case R.id.order_form:
+				Intent order_form_intent = new Intent(FoodView.this, FoodOrderView.class);
+	        	order_form_intent.putExtras(bundle);
+	        	order_form_intent.putExtra("isorder", true);
+				startActivity(order_form_intent);
+				break;
+			case R.id.order_call:
+				Toast.makeText(this, "order call", Toast.LENGTH_SHORT).show();
+				break;
+			case android.R.id.home:
+				this.finish();
+		
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
 	
 }

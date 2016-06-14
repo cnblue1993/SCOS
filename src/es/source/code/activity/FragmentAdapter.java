@@ -41,6 +41,7 @@ public class FragmentAdapter extends FragmentPagerAdapter {
     public void destroyItem(ViewGroup container, int position, Object object) {
         System.out.println("position Destory" + position);
         super.destroyItem(container, position, object);
+       // notifyDataSetChanged();
     }
 
     @Override
@@ -61,6 +62,22 @@ public class FragmentAdapter extends FragmentPagerAdapter {
                 break;
         }
         return fragment;
+    }
+    
+    public ColdFragment getColdFragment(){
+    	return myFragment1;
+    }
+    
+    public HotFragment getHotFragment(){
+    	return myFragment2;
+    }
+    
+    public SeaFragment getSeaFragment(){
+    	return myFragment3;
+    }
+    
+    public DrinkFragment getDrinkFragment(){
+    	return myFragment4;
     }
 
 }

@@ -41,6 +41,18 @@
             android:name="es.source.code.activity.LoginOrRegister" >
         </activity>
         
+        <activity
+            android:name="es.source.code.activity.FoodView" 
+            android:label="点菜吧"
+            android:logo="@drawable/order">
+        </activity>
+        
+        <activity
+            android:name="es.source.code.activity.FoodOrderView" 
+            android:label="查看已点菜品"
+            
+            android:logo="@drawable/order">
+        </activity>
     </application>
 
 </manifest>

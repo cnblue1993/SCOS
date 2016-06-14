@@ -4,13 +4,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
-	<TextView  
-        android:layout_width="match_parent"  
-        android:layout_height="match_parent"  
-        android:text="SEA"  
-        android:textColor="#FF0000"  
-        android:textSize="20sp"  
-        android:gravity="center"  
-        ></TextView>  
+	<ListView
+		 android:id="@android:id/list"
+		 android:layout_width="match_parent"
+		 android:layout_height="match_parent"
+		 android:layout_weight="1.0"
+		 android:dividerHeight="1px"
+		 android:scrollbars="none" />
     
 </LinearLayout>

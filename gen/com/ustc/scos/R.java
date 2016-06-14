@@ -11,69 +11,191 @@ public final class R {
     public static final class attr {
     }
     public static final class color {
-        public static final int titlebackgroundcolor=0x7f070000;
+        public static final int color_bg_normal=0x7f040001;
+        public static final int color_bg_selected=0x7f040000;
+        public static final int color_text_normal=0x7f040003;
+        public static final int color_text_selected=0x7f040002;
+        public static final int titlebackgroundcolor=0x7f040004;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
          */
-        public static final int activity_horizontal_margin=0x7f040000;
-        public static final int activity_vertical_margin=0x7f040001;
+        public static final int activity_horizontal_margin=0x7f050000;
+        public static final int activity_vertical_margin=0x7f050001;
     }
     public static final class drawable {
         public static final int background_button_div=0x7f020000;
-        public static final int entry=0x7f020001;
-        public static final int form=0x7f020002;
-        public static final int help=0x7f020003;
-        public static final int ic_launcher=0x7f020004;
-        public static final int input_over=0x7f020005;
-        public static final int launch=0x7f020006;
-        public static final int login=0x7f020007;
-        public static final int login_input=0x7f020008;
-        public static final int order=0x7f020009;
-        public static final int qq_edit_login=0x7f02000a;
-        public static final int user=0x7f02000b;
+        public static final int cold0=0x7f020001;
+        public static final int cold1=0x7f020002;
+        public static final int cold2=0x7f020003;
+        public static final int cold3=0x7f020004;
+        public static final int cold4=0x7f020005;
+        public static final int cold5=0x7f020006;
+        public static final int cold6=0x7f020007;
+        public static final int cold7=0x7f020008;
+        public static final int cold8=0x7f020009;
+        public static final int cold9=0x7f02000a;
+        public static final int color_radiobutton=0x7f02000b;
+        public static final int drink0=0x7f02000c;
+        public static final int drink1=0x7f02000d;
+        public static final int drink2=0x7f02000e;
+        public static final int drink3=0x7f02000f;
+        public static final int drink4=0x7f020010;
+        public static final int drink5=0x7f020011;
+        public static final int drink6=0x7f020012;
+        public static final int drink7=0x7f020013;
+        public static final int entry=0x7f020014;
+        public static final int form=0x7f020015;
+        public static final int help=0x7f020016;
+        public static final int hot0=0x7f020017;
+        public static final int hot1=0x7f020018;
+        public static final int hot2=0x7f020019;
+        public static final int hot3=0x7f02001a;
+        public static final int hot4=0x7f02001b;
+        public static final int hot5=0x7f02001c;
+        public static final int hot6=0x7f02001d;
+        public static final int hot7=0x7f02001e;
+        public static final int hot8=0x7f02001f;
+        public static final int ic_launcher=0x7f020020;
+        public static final int input_over=0x7f020021;
+        public static final int launch=0x7f020022;
+        public static final int login=0x7f020023;
+        public static final int login_input=0x7f020024;
+        public static final int order=0x7f020025;
+        public static final int qq_edit_login=0x7f020026;
+        public static final int radio_group_selector=0x7f020027;
+        public static final int sea0=0x7f020028;
+        public static final int sea1=0x7f020029;
+        public static final int sea2=0x7f02002a;
+        public static final int sea3=0x7f02002b;
+        public static final int sea4=0x7f02002c;
+        public static final int sea5=0x7f02002d;
+        public static final int sea6=0x7f02002e;
+        public static final int sea7=0x7f02002f;
+        public static final int sea8=0x7f020030;
+        public static final int tab_selected_pressed_holo=0x7f020031;
+        public static final int user=0x7f020032;
     }
     public static final class id {
-        public static final int btn_back=0x7f080003;
-        public static final int btn_login=0x7f080004;
-        public static final int et_account=0x7f080001;
-        public static final int et_pwd=0x7f080002;
-        public static final int include_navigation=0x7f080005;
-        public static final int iv_form=0x7f08000a;
-        public static final int iv_help=0x7f080010;
-        public static final int iv_login=0x7f08000d;
-        public static final int iv_order=0x7f080007;
-        public static final int ly_form=0x7f080009;
-        public static final int ly_help=0x7f08000f;
-        public static final int ly_login=0x7f08000c;
-        public static final int ly_order=0x7f080006;
-        public static final int screen=0x7f080000;
-        public static final int tv_form=0x7f08000b;
-        public static final int tv_help=0x7f080011;
-        public static final int tv_login=0x7f08000e;
-        public static final int tv_order=0x7f080008;
+        public static final int btn_back=0x7f090026;
+        public static final int btn_login=0x7f090027;
+        public static final int btn_register=0x7f090025;
+        public static final int div_order_tab_bar=0x7f09000c;
+        public static final int div_tab_bar=0x7f09001f;
+        public static final int et_account=0x7f090023;
+        public static final int et_pwd=0x7f090024;
+        public static final int food_image=0x7f090000;
+        public static final int food_name=0x7f090001;
+        public static final int food_order=0x7f090003;
+        public static final int food_price=0x7f090002;
+        public static final int icon=0x7f090029;
+        public static final int iconName=0x7f09002a;
+        public static final int id_tab_line_iv=0x7f090019;
+        public static final int iv_form=0x7f09002f;
+        public static final int iv_help=0x7f090035;
+        public static final int iv_login=0x7f090032;
+        public static final int iv_order=0x7f09002c;
+        public static final int ly_cold=0x7f090011;
+        public static final int ly_drink=0x7f090017;
+        public static final int ly_form=0x7f09002e;
+        public static final int ly_help=0x7f090034;
+        public static final int ly_hot=0x7f090013;
+        public static final int ly_login=0x7f090031;
+        public static final int ly_navigation=0x7f090028;
+        public static final int ly_order=0x7f09002b;
+        public static final int ly_sea=0x7f090015;
+        public static final int ly_switch=0x7f090010;
+        public static final int navigation=0x7f090021;
+        public static final int order_call=0x7f090039;
+        public static final int order_count=0x7f090006;
+        public static final int order_del=0x7f090008;
+        public static final int order_food=0x7f090037;
+        public static final int order_form=0x7f090038;
+        public static final int order_message=0x7f09000e;
+        public static final int order_name=0x7f090004;
+        public static final int order_price=0x7f090005;
+        public static final int order_remark=0x7f090007;
+        public static final int order_submit=0x7f09000f;
+        public static final int rb_cold=0x7f09001b;
+        public static final int rb_drink=0x7f09001e;
+        public static final int rb_hot=0x7f09001c;
+        public static final int rb_ordered=0x7f09000b;
+        public static final int rb_sea=0x7f09001d;
+        public static final int rb_unorder=0x7f09000a;
+        public static final int rg_food_bar=0x7f09001a;
+        public static final int rg_food_order_bar=0x7f090009;
+        public static final int screen=0x7f090022;
+        public static final int tv_cold=0x7f090012;
+        public static final int tv_drink=0x7f090018;
+        public static final int tv_form=0x7f090030;
+        public static final int tv_help=0x7f090036;
+        public static final int tv_hot=0x7f090014;
+        public static final int tv_login=0x7f090033;
+        public static final int tv_order=0x7f09002d;
+        public static final int tv_sea=0x7f090016;
+        public static final int vpager=0x7f090020;
+        public static final int vpager_order=0x7f09000d;
     }
     public static final class layout {
         public static final int entry=0x7f030000;
-        public static final int login=0x7f030001;
-        public static final int main_screen=0x7f030002;
-        public static final int navigation_bar=0x7f030003;
+        public static final int food_cold=0x7f030001;
+        public static final int food_detailed=0x7f030002;
+        public static final int food_drink=0x7f030003;
+        public static final int food_hot=0x7f030004;
+        public static final int food_item=0x7f030005;
+        public static final int food_order_item=0x7f030006;
+        public static final int food_order_view=0x7f030007;
+        public static final int food_ordered=0x7f030008;
+        public static final int food_sea=0x7f030009;
+        public static final int food_type_bar=0x7f03000a;
+        public static final int food_unorder=0x7f03000b;
+        public static final int food_view=0x7f03000c;
+        public static final int login=0x7f03000d;
+        public static final int main_screen=0x7f03000e;
+        public static final int navigation=0x7f03000f;
+        public static final int navigation_bar=0x7f030010;
+    }
+    public static final class menu {
+        public static final int order=0x7f080000;
     }
     public static final class string {
         /**  login 
          */
-        public static final int account=0x7f050006;
-        public static final int app_name=0x7f050000;
-        public static final int back=0x7f050009;
-        public static final int form=0x7f050003;
-        public static final int help=0x7f050005;
-        public static final int login=0x7f050008;
-        public static final int loginOrRegister=0x7f050004;
+        public static final int account=0x7f060006;
+        public static final int app_name=0x7f060000;
+        public static final int back=0x7f060009;
+        /**  foodView 
+         */
+        public static final int cold=0x7f06000b;
+        public static final int drink=0x7f06000e;
+        public static final int food_count=0x7f060016;
+        /**  form 
+         */
+        public static final int food_name=0x7f060014;
+        public static final int food_ordered=0x7f060013;
+        public static final int food_pay=0x7f060018;
+        public static final int food_price=0x7f060015;
+        public static final int food_remark=0x7f060017;
+        /**  food order view 
+         */
+        public static final int food_unorder=0x7f060012;
+        public static final int form=0x7f060003;
+        public static final int help=0x7f060005;
+        public static final int hot=0x7f06000c;
+        public static final int login=0x7f060008;
+        public static final int loginOrRegister=0x7f060004;
         /**  navigation_bar 
          */
-        public static final int order=0x7f050002;
-        public static final int pwd=0x7f050007;
-        public static final int welcome=0x7f050001;
+        public static final int order=0x7f060002;
+        public static final int order_call=0x7f060011;
+        /**  order action bar 
+         */
+        public static final int order_food=0x7f06000f;
+        public static final int order_form=0x7f060010;
+        public static final int pwd=0x7f060007;
+        public static final int register=0x7f06000a;
+        public static final int sea=0x7f06000d;
+        public static final int welcome=0x7f060001;
     }
     public static final class style {
         /** 
@@ -97,12 +219,13 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f060000;
+        public static final int AppBaseTheme=0x7f070000;
         /**  Application theme. 
          */
-        public static final int AppTheme=0x7f060001;
-        public static final int WindowTitleBackground=0x7f060003;
-        public static final int WindowTitleText=0x7f060004;
-        public static final int window=0x7f060002;
+        public static final int AppTheme=0x7f070001;
+        public static final int WindowTitleBackground=0x7f070003;
+        public static final int WindowTitleText=0x7f070004;
+        public static final int tab_menu_item=0x7f070005;
+        public static final int window=0x7f070002;
     }
 }
