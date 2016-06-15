@@ -49,12 +49,18 @@ public class FoodOrderListAdapter extends BaseAdapter {
 		}
 		return 0;
 	}
+	
+//	public ArrayList<Food> getFoods(){
+//		if(foods != null)
+//			return foods;
+//		return null;
+//	}
 
 	@Override
 	public Object getItem(int position) {
 		// TODO Auto-generated method stub
 		if(foods != null){
-			foods.get(position);
+			return foods.get(position);
 		}
 		return null;
 	}

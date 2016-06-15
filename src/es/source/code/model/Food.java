@@ -1,8 +1,10 @@
 package es.source.code.model;
 
+import java.io.Serializable;
+
 import android.R.integer;
 
-public class Food {
+public class Food implements Serializable{
 	private int type;	//	0-cold	1-hot	2-sea	3-drink
 	private String name;
 	private String remark;

@@ -53,7 +53,8 @@ public class FoodListAdapter extends BaseAdapter {
 	public Object getItem(int position) {
 		// TODO Auto-generated method stub
 		if(foods != null){
-			foods.get(position);
+			return foods.get(position);
+			
 		}
 		return null;
 	}

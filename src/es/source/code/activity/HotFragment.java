@@ -7,6 +7,7 @@ import com.ustc.scos.R;
 
 import es.source.code.model.Food;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
@@ -50,9 +51,21 @@ public class HotFragment extends ListFragment {
 	}
 	@Override  
     public void onListItemClick(ListView l, View v, int position, long id) {  //listview 存在button等，会使该方法失效
-        super.onListItemClick(l, v, position, id);  
-        System.out.println(position);         
+        super.onListItemClick(l, v, position, id);
+        
+        
+        Intent detail_intent = new Intent();
+        detail_intent.setAction("android.intent.action.DETAIL");
+        detail_intent.addCategory("android.intent.category.DETAILLAUNCHER");
+        
+        Bundle bundle = new Bundle();
+      	bundle.putSerializable("foods", foods);
+		detail_intent.putExtras(bundle);
+		
+        detail_intent.putExtra("position", position);
+		startActivity(detail_intent);       
     }   
+  
 
 	@Override  
     public void onActivityCreated(Bundle savedInstanceState){  

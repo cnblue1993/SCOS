@@ -68,7 +68,6 @@ public class FoodMenu {
 		drinkFoods.add(new Food(3, R.drawable.drink5, "红酒", "100"));
 		drinkFoods.add(new Food(3, R.drawable.drink6, "白酒", "500"));
 		drinkFoods.add(new Food(3, R.drawable.drink7, "果汁", "10"));
-
 	}
 
 	public ArrayList<Food> getColdFoods() {
@@ -86,7 +85,7 @@ public class FoodMenu {
 	public ArrayList<Food> getDrinkFoods() {
 		return drinkFoods;
 	}
-	
+
 
 	
 

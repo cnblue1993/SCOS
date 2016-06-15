@@ -52,17 +52,19 @@ public class SCOSEntry extends Activity {
 			  //当手指离开的时候
 			  x2 = event.getX();
 			  y2 = event.getY();
-			  if(y1 - y2 > 50) {	//up
-				  Log.i(TAG, "up");
-			  } else if(y2 - y1 > 50) {		//down
-				  Log.i(TAG, "down");
-			  } else if(x1 - x2 > 50) {		//left
+			  
+			  
+			  if(x1 - x2 > 50) {		//left
 				  Log.i(TAG, "left");
 				  Intent intent = new Intent("android.intent.action.SCOSMAIN");
 				  intent.addCategory("android.intent.category.SCOSLAUNCHER");
 				  intent.putExtra("entryReturn", "FromEntry");
 				  startActivity(intent);
 				  
+			  } else if(y2 - y1 > 50) {		//down
+				  Log.i(TAG, "down");
+			  } else if(y1 - y2 > 50) {	//up
+				  Log.i(TAG, "up");  
 			  } else if(x2 - x1 > 50) {		//right
 					  Log.i(TAG, "right");
 			  }

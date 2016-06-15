@@ -53,6 +53,20 @@
             
             android:logo="@drawable/order">
         </activity>
+        
+        <activity
+            android:name="es.source.code.activity.FoodDetailed"
+            android:label="详细信息"
+            android:logo="@drawable/order" >
+            <intent-filter>
+                <action android:name="android.intent.action.DETAIL"/>
+                
+                <category android:name="android.intent.category.DETAILLAUNCHER"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
     </application>
+    
+    
 
 </manifest>
