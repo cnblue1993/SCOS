@@ -58,10 +58,8 @@ public class DrinkFragment extends ListFragment {
         detail_intent.setAction("android.intent.action.DETAIL");
         detail_intent.addCategory("android.intent.category.DETAILLAUNCHER");
         
-        Bundle bundle = new Bundle();
-      	bundle.putSerializable("foods", foods);
-		detail_intent.putExtras(bundle);
-		
+        
+        detail_intent.putExtra("from", 3);
         detail_intent.putExtra("position", position);
 		startActivity(detail_intent);       
     }   

@@ -7,7 +7,8 @@
     <ImageView
         android:id="@+id/detail_img"
         android:layout_width="200dp"
-        android:layout_height="200dp" 
+        android:layout_height="200dp"
+        android:layout_marginTop="20dp" 
         android:layout_centerHorizontal="true"
         android:scaleType="fitCenter"
         android:src="@drawable/cold0"/>
@@ -32,24 +33,38 @@
         android:gravity="center_vertical"
         android:text="price" />
     
+    <TextView
+        android:id="@+id/et_remark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/detail_price"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center_vertical"
+        android:text="备注：" />
+    
     <EditText
         android:id="@+id/detail_remark"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_below="@id/detail_price"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_remark"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:layout_marginTop="20dp"
-        android:gravity="center_vertical"
+        android:inputType="textMultiLine"
+        android:minLines="5"
+        android:background="@drawable/edit_multi"
+        android:maxLines="10"
+        android:scrollbars="vertical"
+        android:gravity="top"
         android:text="" />
     
     <Button
         android:id="@+id/detail_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:layout_below="@id/detail_remark"
         android:layout_alignRight="@id/detail_remark"
-        android:layout_marginTop="20dp"
         android:gravity="center_vertical"
         android:text="add" />   
         

@@ -14,8 +14,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class UnorderFragment extends ListFragment{
 	
@@ -23,6 +26,10 @@ public class UnorderFragment extends ListFragment{
 	private ListView listView;
 	private FoodOrderListAdapter adapter;
 	private static Form tempFrom;
+	private static Form unpayForm;
+	
+	private Button btn_submit;
+	private static TextView unorder_message;
 	
 	
 	@Override  
@@ -33,6 +40,12 @@ public class UnorderFragment extends ListFragment{
         if(listView == null){
 			listView = (ListView) unorderView.findViewById(android.R.id.list);
         }
+        
+        btn_submit = (Button) unorderView.findViewById(R.id.unorder_btn);
+        unorder_message = (TextView) unorderView.findViewById(R.id.unorder_message);
+        
+        unorder_message.setText("总计："+tempFrom.getFoodCount()+" 道菜 "+"，一共："+tempFrom.getFoodSum()+"元");
+        btn_submit.setOnClickListener(new submitListener());
         
         return unorderView;      
     }  
@@ -47,52 +60,16 @@ public class UnorderFragment extends ListFragment{
 		}
 		setListAdapter(adapter);
 		
+		
+		
 	}
 	
 	private void initData(){
 		tempFrom = MainScreen.getTempForm();
 		foods = tempFrom.getFoods();
-		tempFrom.setFoodCount(foods.size());
 		
-		int sum = 0;
-		Iterator<Food> iterator = foods.iterator();  
-		while(iterator.hasNext()){  
-		    Food e = iterator.next(); 
-		    sum += Integer.parseInt(e.getPrice());
-		}
-		tempFrom.setFoodSum(sum);
-		/*
-		if(foods == null)
-			foods = new ArrayList<Food>();
-		Iterator<Food> iterator = MainScreen.getColdFoods().iterator();  
-		while(iterator.hasNext()){  
-		    Food e = iterator.next();  
-		    if(e.getState() == 1){  
-		    	foods.add(e);
-		    }  
-		} 
-		iterator = MainScreen.getHotFoods().iterator();  
-		while(iterator.hasNext()){  
-		    Food e = iterator.next();  
-		    if(e.getState() == 1){  
-		    	foods.add(e);
-		    }  
-		} 
-		iterator = MainScreen.getSeaFoods().iterator();  
-		while(iterator.hasNext()){  
-		    Food e = iterator.next();  
-		    if(e.getState() == 1){  
-		    	foods.add(e);
-		    }  
-		} 
-		iterator = MainScreen.getDrinkFoods().iterator();  
-		while(iterator.hasNext()){  
-		    Food e = iterator.next();  
-		    if(e.getState() == 1){  
-		    	foods.add(e);
-		    }  
-		}
-		*/ 
+		unpayForm = MainScreen.getUnpayForm();
+		
 	}
 
 	@Override  
@@ -115,4 +92,25 @@ public class UnorderFragment extends ListFragment{
 	public static Form getTempForm(){
 		return tempFrom;
 	}
+  class submitListener implements OnClickListener{
+
+		@Override
+		public void onClick(View v) {
+			unpayForm.setFoodCount(tempFrom.getFoodCount());
+			unpayForm.setFoods(tempFrom.getFoods());
+			unpayForm.setFoodSum(tempFrom.getFoodSum());
+			
+			tempFrom.setFoods(new ArrayList<Food>());
+			tempFrom.setFoodCount(0);
+			tempFrom.setFoodSum(0);
+			
+			//未及时刷新数据
+			setListAdapter(adapter);
+			adapter.notifyDataSetChanged();
+		}
+	}
+  
+  	public static void updata(){
+  		unorder_message.setText("总计："+tempFrom.getFoodCount()+" 道菜 "+"，一共："+tempFrom.getFoodSum()+"元");
+  	}
 }

@@ -36,7 +36,7 @@ public class FoodMenu {
 		coldFoods.add(new Food(0, R.drawable.cold7, "凉拌藕片", "8"));
 		coldFoods.add(new Food(0, R.drawable.cold8, "凉拌海带丝", "8"));
 		coldFoods.add(new Food(0, R.drawable.cold9, "酸辣凉粉", "10"));
-		
+
 		//热菜
 		hotFoods.add(new Food(1, R.drawable.hot0, "鱼香肉丝", "18"));
 		hotFoods.add(new Food(1, R.drawable.hot1, "土豆炖牛肉", "28"));
@@ -58,7 +58,7 @@ public class FoodMenu {
 		seaFoods.add(new Food(2, R.drawable.sea6, "鲍鱼海鲜乌鸡汤", "52"));
 		seaFoods.add(new Food(2, R.drawable.sea7, "海鲜麻辣香锅", "46"));
 		seaFoods.add(new Food(2, R.drawable.sea8, "海鲜双吃", "30"));
-		
+
 		//酒水
 		drinkFoods.add(new Food(3, R.drawable.drink0, "可乐", "10"));
 		drinkFoods.add(new Food(3, R.drawable.drink1, "雪碧", "10"));
@@ -68,6 +68,7 @@ public class FoodMenu {
 		drinkFoods.add(new Food(3, R.drawable.drink5, "红酒", "100"));
 		drinkFoods.add(new Food(3, R.drawable.drink6, "白酒", "500"));
 		drinkFoods.add(new Food(3, R.drawable.drink7, "果汁", "10"));
+
 	}
 
 	public ArrayList<Food> getColdFoods() {
@@ -85,6 +86,7 @@ public class FoodMenu {
 	public ArrayList<Food> getDrinkFoods() {
 		return drinkFoods;
 	}
+	
 
 
 	

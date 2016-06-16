@@ -58,10 +58,10 @@ public class FoodOrderView extends FragmentActivity {
 		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		
-		btn_submit = (Button) findViewById(R.id.order_submit);
-		tv_message = (TextView) findViewById(R.id.order_message);
+		//btn_submit = (Button) findViewById(R.id.order_submit);
+		//tv_message = (TextView) findViewById(R.id.order_message);
 		
-		btn_submit.setOnClickListener(new submitListener());
+		//btn_submit.setOnClickListener(new submitListener());
 		
 		adapter = new OrderFragmentAdapter(getSupportFragmentManager());
 		
@@ -129,14 +129,12 @@ public class FoodOrderView extends FragmentActivity {
 	            if (state == 2) {
 	                switch (vPager_order.getCurrentItem()) {
 	                    case PAGE_ONE:
-	                        rb_food_unorder.setChecked(true);
-	                        btn_submit.setText("提交订单");	                        
+	                        rb_food_unorder.setChecked(true);                        
 	                      
 	                        break;
 	                        
 	                    case PAGE_TWO:
 	                        rb_food_ordered.setChecked(true);  
-	                        btn_submit.setText("结账");
 	                        break;
 	                }
 	            }
@@ -145,46 +143,7 @@ public class FoodOrderView extends FragmentActivity {
 		});
 		
 	}
-    class submitListener implements OnClickListener{
 
-		@Override
-		public void onClick(View v) {
-			// TODO Auto-generated method stub
-			Button btn = (Button) v.findViewById(R.id.order_submit);
-			//Toast.makeText(FoodOrderView.this, btn.getText().toString() , Toast.LENGTH_SHORT).show();
-			if(btn.getText().toString().equals("提交订单")){
-				/*
-	 			ArrayList<Food> foods = adapter.getUnorderFragment().getFoods();
-				FoodOrderListAdapter unAdapter = adapter.getUnorderFragment().getUnorderAdapter();
-				Iterator<Food> iterator = foods.iterator();  
-				//Iterator<Food> iterator = temp.getFoods().iterator();
-				while(iterator.hasNext()){  
-				    Food e = iterator.next();  
-				    e.setState(2);
-				}*/
-				unpayForm.setFoodCount(tempForm.getFoodCount());
-				unpayForm.setFoods(tempForm.getFoods());
-				unpayForm.setFoodSum(tempForm.getFoodSum());				
-				
-				tempForm.setFoodCount(0);
-				tempForm.setFoods(new ArrayList<Food>());
-				tempForm.setFoodSum(0);
-				
-				
-				//adapter.notifyDataSetChanged();
-				
-				//未及时刷新food view listview
-				
-			}else{
-				
-				//未及时刷新listview
-				if(user != null && user.getOldUser()){
-					Toast.makeText(FoodOrderView.this, "您好,老顾客,本次你可享受 7 折优惠", Toast.LENGTH_SHORT).show();
-				}
-			}
-		
-		}
-	}
     
     public static Form getUnpayForm(){
     	return unpayForm;
@@ -205,16 +164,5 @@ public class FoodOrderView extends FragmentActivity {
 	}
     
     
-/*
- *
- 		unAdapter = adapter.getUnorderFragment().getUnorderAdapter();	                		
-		unorderFragment = adapter.getUnorderFragment();                		
-		temp = unorderFragment.getForm();
-		System.out.println("总计："+temp.getFoodCount()+" 道菜 "+"，一共："+temp.getFoodSum()+"元");
-		tv_message.setText("总计："+temp.getFoodCount()+" 道菜 "+"，一共："+temp.getFoodSum()+"元");
-		
-		orderAdapter = adapter.getOrderFragment().getOrderAdapter();
-	    orderedFrgment = adapter.getOrderFragment();
- */
     
 }

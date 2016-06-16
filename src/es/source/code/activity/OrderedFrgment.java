@@ -6,13 +6,18 @@ import java.util.Iterator;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
+import android.text.style.UpdateAppearance;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.ustc.scos.R;
 
+import es.source.code.activity.UnorderFragment.submitListener;
 import es.source.code.model.Food;
 import es.source.code.model.Form;
 
@@ -22,6 +27,10 @@ public class OrderedFrgment extends ListFragment {
 	private FoodOrderListAdapter adapter;
 	
 	private static Form unpayForm;
+	private static ArrayList<Form> forms;
+	
+	private Button btn_pay;
+	private static TextView ordered_message;
 	
 	@Override  
     public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState){  
@@ -31,6 +40,12 @@ public class OrderedFrgment extends ListFragment {
         if(listView == null){
 			listView = (ListView) unorderView.findViewById(android.R.id.list);
         }
+        
+        btn_pay = (Button) unorderView.findViewById(R.id.ordered_btn);
+        ordered_message = (TextView) unorderView.findViewById(R.id.ordered_message);
+        
+        ordered_message.setText("总计："+unpayForm.getFoodCount()+" 道菜 "+"，一共："+unpayForm.getFoodSum()+"元");
+        btn_pay.setOnClickListener(new payListener());
         
         return unorderView;      
     }  
@@ -49,50 +64,10 @@ public class OrderedFrgment extends ListFragment {
 	}
 	
 	private void initData(){
-		unpayForm = FoodOrderView.getUnpayForm();
+		unpayForm = MainScreen.getUnpayForm();
 		foods = unpayForm.getFoods();
-		/*
-		if(foods == null)
-			foods = new ArrayList<Food>();
-		int sum = 0;
-		Iterator<Food> iterator = MainScreen.getColdFoods().iterator();  
-		while(iterator.hasNext()){  
-		    Food e = iterator.next();  
-		    if(e.getState() == 2){  
-		    	foods.add(e);
-		    	sum += Integer.parseInt(e.getPrice());
-		    }  
-		} 
-		iterator = MainScreen.getHotFoods().iterator();  
-		while(iterator.hasNext()){  
-		    Food e = iterator.next();  
-		    if(e.getState() == 2){  
-		    	foods.add(e);
-		    	sum += Integer.parseInt(e.getPrice());
-		    }  
-		} 
-		iterator = MainScreen.getSeaFoods().iterator();  
-		while(iterator.hasNext()){  
-		    Food e = iterator.next();  
-		    if(e.getState() == 2){  
-		    	foods.add(e);
-		    	sum += Integer.parseInt(e.getPrice());
-		    }  
-		} 
-		iterator = MainScreen.getDrinkFoods().iterator();  
-		while(iterator.hasNext()){  
-		    Food e = iterator.next();  
-		    if(e.getState() == 2){  
-		    	foods.add(e);
-		    	sum += Integer.parseInt(e.getPrice());
-		    }  
-		} 
-		form = new Form();
-		form.setFoods(foods);
-		form.setFoodCount(foods.size());
-		form.setFoodSum(sum);
-		*/
-		
+
+		forms = MainScreen.getForm();
 	}
 
 	@Override  
@@ -111,5 +86,23 @@ public class OrderedFrgment extends ListFragment {
 	}
 	public FoodOrderListAdapter getOrderAdapter(){
 		return adapter;
+	}
+	class payListener implements OnClickListener{
+
+		@Override
+		public void onClick(View v) {
+			
+			forms.add(new Form(2, unpayForm.getFoodCount(), unpayForm.getFoodSum(), unpayForm.getFoods()));
+			
+			unpayForm.setFoodCount(0);
+			unpayForm.setFoods(new ArrayList<Food>());
+			unpayForm.setFoodSum(0);
+			
+			//未及时刷新数据
+			setListAdapter(adapter);
+		}
+	}
+	public static void updata(){
+		ordered_message.setText("总计："+unpayForm.getFoodCount()+" 道菜 "+"，一共："+unpayForm.getFoodSum()+"元");
 	}
 }

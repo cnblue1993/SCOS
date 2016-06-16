@@ -48,6 +48,7 @@
         android:layout_height="match_parent"/>
 	    
     </LinearLayout> 
+    <!-- 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" 
@@ -65,7 +66,8 @@
 	        android:id="@+id/order_submit"
 	        android:layout_width="wrap_content"
 	        android:layout_height="50dp"
-	        android:text="提交订单" />   
+	        android:text="提交订单" />  
+	         
     </LinearLayout>     
-
+ -->
 </LinearLayout>

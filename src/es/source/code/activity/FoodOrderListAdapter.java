@@ -128,13 +128,13 @@ public class FoodOrderListAdapter extends BaseAdapter {
 	        food.setOredered(false);
 	        food.setState(0);
 	        MainScreen.getTempForm().getFoods().remove(food);
+	        
+	        //未更新点菜界面button
+	        
 	        Toast.makeText(context, "退点成功", Toast.LENGTH_SHORT).show();
 	        
 	        notifyDataSetChanged();//---unorder listview 及时更新
+	        UnorderFragment.updata();//更新总计信息
 		}
 	}
-	public String getMessage(){
-		return "总计："+form.getFoodCount()+" 道菜 "+"，一共："+form.getFoodSum()+"元";
-	}
-	
 }

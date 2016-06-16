@@ -5,13 +5,20 @@ import java.util.ArrayList;
 import com.ustc.scos.R;
 
 import es.source.code.model.Food;
+import es.source.code.model.Form;
 
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.Selection;
+import android.text.Spannable;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -30,6 +37,8 @@ public class FoodDetailed extends Activity {
 	private int position;
 	private int maxIndex;
 	
+	private Form tempForm;
+	
 	//手指坐标
 	float x1=0,x2=0,y1=0,y2=0;
 	private static final String TAG = "detail";
@@ -43,17 +52,15 @@ public class FoodDetailed extends Activity {
 		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		
+		tempForm = MainScreen.getTempForm();
 		
 		initUI();
 		
-		Intent get_intent = getIntent();
-		foods = (ArrayList<Food>) get_intent.getSerializableExtra("foods");
 		
-		position = get_intent.getIntExtra("position", 0);
-		maxIndex = foods.size() - 1;
-		
-		updateUI(foods.get(position));
-		
+		//updateUI(foods.get(position));
+	
+		btn = (Button) findViewById(R.id.detail_btn);
+		btn.setOnClickListener(new btnListener());
 	}
 	
 	public void initUI(){
@@ -66,14 +73,42 @@ public class FoodDetailed extends Activity {
 	
 	public void updateUI(Food food){
 		iv_img.setImageResource(food.getImg());
-		tv_foodname.setText("菜名为："+food.getName());
-		tv_foodprice.setText("单价为："+food.getPrice()+"元 / 份");
+		tv_foodname.setText("菜名："+food.getName());
+		tv_foodprice.setText("单价："+food.getPrice()+"元 / 份");
 		et_foodremark.setText(food.getRemark());
+		Editable text = et_foodremark.getText();
+		Selection.setSelection(text, text.length());
 		if(food.isOredered())
 			btn.setText("退点");
 		else {
 			btn.setText("添加");
 		}
+	}
+	
+	class btnListener implements OnClickListener{
+
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			Food food = foods.get(position);
+			if(btn.getText() == "退点"){
+				
+				//System.out.println(tempForm.getFoods().indexOf(food));
+				food.setState(0);
+				food.setOredered(false);
+				food.setCount(food.getCount() - 1);
+				MainScreen.getTempForm().getFoods().remove(food);
+				btn.setText("添加");
+			}else{
+				food.setState(1);
+				food.setOredered(true);
+				food.setCount(food.getCount() + 1);
+				btn.setText("退点");				
+				tempForm.getFoods().add(food);				
+			}
+		}
+		
+		
 	}
 	
 	@Override
@@ -122,24 +157,51 @@ public class FoodDetailed extends Activity {
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
+		String remark = et_foodremark.getText().toString();
+		foods.get(position).setRemark(remark);
 	}
 
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
+		
+		Intent get_intent = getIntent();
+		
+		foods = MainScreen.getfoods( get_intent.getIntExtra("from", 4));
+		position = get_intent.getIntExtra("position", 0);
+		
+		maxIndex = foods.size() - 1;
+		updateUI(foods.get(position));
+		
 	}
 
 	@Override
 	protected void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
+		//System.out.println("onstart");
 	}
 
 	@Override
 	protected void onStop() {
 		// TODO Auto-generated method stub
 		super.onStop();
+		//System.out.println("onstop");
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			this.finish();
+			break;
+
+		default:
+			break;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 	
 }

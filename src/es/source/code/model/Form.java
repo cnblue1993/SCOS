@@ -2,6 +2,7 @@ package es.source.code.model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 
 import android.R.integer;
 
@@ -21,7 +22,8 @@ public class Form {
 		this.state = state;
 		this.foodCount = count;
 		this.foodSum = sum;
-		this.foods = (ArrayList<Food>) foods.clone();
+		//this.foods = (ArrayList<Food>) foods.clone();
+		this.foods = foods;
 	}
 	
 	public ArrayList<Food> getFoods() {
@@ -31,12 +33,20 @@ public class Form {
 		this.foods = foods;
 	}
 	public int getFoodCount() {
+		setFoodCount(foods.size());
 		return foodCount;
 	}
 	public void setFoodCount(int foodCount) {
 		this.foodCount = foodCount;
 	}
 	public int getFoodSum() {
+		Iterator<Food> iterator = foods.iterator(); 
+		int sum = 0;
+		while(iterator.hasNext()){  
+		    Food e = iterator.next(); 
+		    sum += Integer.parseInt(e.getPrice());
+		}
+		setFoodSum(sum);
 		return foodSum;
 	}
 	public void setFoodSum(int foodSum) {
@@ -48,6 +58,7 @@ public class Form {
 	public void setState(int state) {
 		this.state = state;
 	}
+
 	
 	
 }

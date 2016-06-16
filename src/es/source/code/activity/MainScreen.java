@@ -227,4 +227,18 @@ public class MainScreen extends FragmentActivity {
 	public static  ArrayList<Form> getForm(){
 		return forms;
 	}
+	public static ArrayList<Food> getfoods(int from){
+		switch (from) {
+			case 0:
+				return foodMenu.getColdFoods();
+			case 1:
+				return foodMenu.getHotFoods();
+			case 2:
+				return foodMenu.getSeaFoods();
+			case 3:
+				return foodMenu.getDrinkFoods();
+
+		}
+		return null;
+	}
 }

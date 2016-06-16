@@ -122,7 +122,7 @@ public class FoodListAdapter extends BaseAdapter {
 			Food food = foods.get(position);
 			Button btn_order = (Button) v.findViewById(R.id.food_order);
 	        if(btn_order.getText().toString().equals("添加")){
-	        	btn_order.setText("退点");
+	        	//btn_order.setText("退点");
 	        	food.setOredered(true);
 	        	food.setState(1);
 	        	food.setCount(food.getCount() + 1);
@@ -132,10 +132,11 @@ public class FoodListAdapter extends BaseAdapter {
 	        	Toast.makeText(context, "点菜成功", Toast.LENGTH_SHORT).show();
 	        	notifyDataSetChanged();
 	        }else{
-	        	btn_order.setText("添加");
+	        	//btn_order.setText("添加");
 	        	food.setOredered(false);
 	        	food.setState(0);
 	        	food.setCount(food.getCount() - 1);
+	        	
 	        	tempForm.getFoods().remove(food);
 	        	notifyDataSetChanged();
 	        }
