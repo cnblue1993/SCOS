@@ -78,14 +78,11 @@ public class FoodListAdapter extends BaseAdapter {
 			holder.name = (TextView) view.findViewById(R.id.food_name);
 			holder.price = (TextView) view.findViewById(R.id.food_price);
 			holder.order = (Button) view.findViewById(R.id.food_order);
-			
 			view.setTag(holder);
 		}else{
 			holder = (ViewHolder) view.getTag();
 		}
-		
 		Food food = foods.get(position);
-		
 		if(food != null){
 			holder.img.setImageResource(food.getImg());
 			holder.name.setText(food.getName());

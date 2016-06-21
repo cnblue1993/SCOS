@@ -120,17 +120,6 @@ public class FoodView extends FragmentActivity {
 		vpager.setAdapter(mAdapter);
 	    vpager.setCurrentItem(0);
 	    vpager.addOnPageChangeListener(new OnPageChangeListener(){
-
-
-	        //重写ViewPager页面切换的处理方法
-	        @Override
-	        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-	        }
-
-	        @Override
-	        public void onPageSelected(int position) {
-	        }
-
 	        @Override
 	        public void onPageScrollStateChanged(int state) {
 	            //state的状态有三个，0表示什么都没做，1正在滑动，2滑动完毕
@@ -152,7 +141,15 @@ public class FoodView extends FragmentActivity {
 	                }
 	            }
 	        }
-	            
+	        
+	        //重写ViewPager页面切换的处理方法
+	        @Override
+	        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+	        }
+
+	        @Override
+	        public void onPageSelected(int position) {
+	        }
 		});
 		
 	}
@@ -249,13 +246,11 @@ public class FoodView extends FragmentActivity {
 		Bundle bundle = new Bundle();
 		bundle.putSerializable("user",user);
 		switch (item.getItemId()) {
-		
 			case R.id.order_food:
 				Intent food_order_intent = new Intent(FoodView.this, FoodOrderView.class);
 	        	food_order_intent.putExtras(bundle);
 	        	food_order_intent.putExtra("isorder", false);
 				startActivity(food_order_intent);
-				
 				break;
 			case R.id.order_form:
 				Intent order_form_intent = new Intent(FoodView.this, FoodOrderView.class);

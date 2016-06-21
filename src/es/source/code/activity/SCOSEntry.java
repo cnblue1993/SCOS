@@ -4,11 +4,14 @@ import android.R;
 import android.R.layout;
 import android.R.xml;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -16,6 +19,7 @@ public class SCOSEntry extends Activity {
 	//手指坐标
 	float x1=0,x2=0,y1=0,y2=0;
 	private static final String TAG = "entry";
+	private int loginState;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState){
@@ -58,7 +62,7 @@ public class SCOSEntry extends Activity {
 				  Log.i(TAG, "left");
 				  Intent intent = new Intent("android.intent.action.SCOSMAIN");
 				  intent.addCategory("android.intent.category.SCOSLAUNCHER");
-				  intent.putExtra("entryReturn", "FromEntry");
+				 // intent.putExtra("entryReturn", "FromEntry");
 				  startActivity(intent);
 				  
 			  } else if(y2 - y1 > 50) {		//down
@@ -93,6 +97,8 @@ public class SCOSEntry extends Activity {
 	protected void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
+		//SharedPreferences preferences=getSharedPreferences("user", Context.MODE_PRIVATE);
+		//loginState = preferences.getInt("loginState", 0);
 	}
 
 	@Override

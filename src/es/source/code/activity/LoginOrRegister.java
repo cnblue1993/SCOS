@@ -2,9 +2,14 @@ package es.source.code.activity;
 
 import com.ustc.scos.R;
 
+import es.source.code.model.User;
+
 import android.R.bool;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -18,8 +23,11 @@ public class LoginOrRegister extends Activity {
 	private EditText et_pwd;
 	private Button btn_login;
 	private Button btn_back;
+	private Button btn_register;
 	
-	private int loginReturn = 2;
+	private String userName;
+	private int loginState;
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,31 +39,57 @@ public class LoginOrRegister extends Activity {
 		et_pwd = (EditText)findViewById(R.id.et_pwd);
 		btn_login = (Button)findViewById(R.id.btn_login);
 		btn_back = (Button)findViewById(R.id.btn_back);
+		btn_register = (Button)findViewById(R.id.btn_register);
 	
 		btn_login.setOnClickListener(clickListener);
 		btn_back.setOnClickListener(clickListener);
+		btn_register.setOnClickListener(clickListener);
 		
 	}
 	
 	public OnClickListener clickListener = new OnClickListener() {  
 		  
         public void onClick(View v) {
+        	boolean isLogin = true;
         	
         	Intent intent = new Intent("android.intent.action.SCOSMAIN");
 			intent.addCategory("android.intent.category.SCOSLAUNCHER");
-        	boolean flag1 = true;
-        	boolean flag2 = true;
+			boolean flag1 = checkFormat(et_account.getText().toString());
+			boolean flag2 = checkFormat(et_pwd.getText().toString());
+			
+			SharedPreferences preferences=getSharedPreferences("user",Context.MODE_PRIVATE);
+        	Editor editor=preferences.edit();
+        	editor.putString("userName", et_account.getText().toString());
+			
             switch (v.getId()) {
 				case R.id.btn_login:
 					intent.putExtra("loginReturn", "LoginSuccess");
-					flag1 = checkFormat(et_account.getText().toString());
-					flag2 = checkFormat(et_pwd.getText().toString());
+					editor.putInt("loginState", 1);
 					break;
 				case R.id.btn_back:
 					intent.putExtra("loginReturn", "Return");
+					editor.putInt("loginState", 0);
+					flag1 = true;
+					flag2 = true;
+					break;
+				case R.id.btn_register:
+					intent.putExtra("loginReturn", "RegisterSuccess");
+					editor.putInt("loginState", 1);
+					isLogin = false;
 					break;
             } 
             if(flag1 && flag2){
+            	
+            	editor.commit();
+            	
+            	User user = new User();
+            	user.setUserName(et_account.getText().toString());
+            	user.setPassword(et_pwd.getText().toString());
+            	user.setOldUser(isLogin);
+            	
+            	Bundle bundle = new Bundle();
+            	bundle.putSerializable("user",user);
+            	intent.putExtras(bundle);
             	startActivity(intent);
             }
             else{
@@ -97,6 +131,17 @@ public class LoginOrRegister extends Activity {
 	protected void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
+		SharedPreferences preferences=getSharedPreferences("user", Context.MODE_PRIVATE);
+		userName = preferences.getString("userName", null);
+		loginState = preferences.getInt("loginState", 0);
+		
+		if(userName == null){
+			btn_login.setVisibility(View.GONE);
+		}else{
+			btn_register.setVisibility(View.GONE);
+			et_account.setText(userName);
+		}
+		
 	}
 
 	@Override

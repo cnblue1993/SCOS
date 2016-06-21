@@ -6,26 +6,17 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import javax.xml.transform.Templates;
-
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;  
-import android.support.v4.app.FragmentActivity;  
-import android.support.v4.view.ViewPager;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.util.DisplayMetrics;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ustc.scos.R;
@@ -42,8 +33,8 @@ public class MainScreen extends FragmentActivity {
 	private int []icon = {R.drawable.order, R.drawable.form, R.drawable.login, R.drawable.help};
 	private String []iconName =  {"点菜", "查看订单", "登录/注册", "系统帮助"};
 	
-	private boolean navigationState = true;
-	
+	//private boolean navigationState = true;
+	private int loginState;
 	private User user = null;
 	
 	private static FoodMenu foodMenu;
@@ -55,10 +46,11 @@ public class MainScreen extends FragmentActivity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_screen);
-		
+		/*
 		Intent intent =getIntent();
 		String entryReturn = intent.getStringExtra("entryReturn");
         String loginReturn = intent.getStringExtra("loginReturn");
+        
         
         if(!("FromEntry".equals(entryReturn) || "LoginSuccess".equals(loginReturn) || "RegisterSuccess".equals(loginReturn))){
         	navigationState = false;
@@ -66,12 +58,12 @@ public class MainScreen extends FragmentActivity {
         	user=(User)intent.getSerializableExtra("user");
         	//存在问题，未在导航栏加载后执行
         	if(null != user && !user.getOldUser()){
-        		Toast.makeText(this, "欢迎您成为 SCOS 新用户", Toast.LENGTH_SHORT).show();
+        		Toast.makeText(this, "欢迎您成为 SCOS 新用户", Toast.LENGTH_LONG).show();
         	}
         	
         	navigationState = true;
         }
-		
+		*/
 		navigationView = (GridView) findViewById(R.id.navigation);
 		
 		setNavigation();
@@ -121,7 +113,10 @@ public class MainScreen extends FragmentActivity {
 			// TODO Auto-generated method stub
 			convertView =  super.getView(position, convertView, parent);
 			
-			if(!navigationState && (position == 0 || position == 1)){
+//			if(!navigationState  && (position == 0 || position == 1)){
+//				convertView.setVisibility(View.GONE);
+//			}
+			if(loginState == 0  && (position == 0 || position == 1)){
 				convertView.setVisibility(View.GONE);
 			}
 			
@@ -155,7 +150,8 @@ public class MainScreen extends FragmentActivity {
                 startActivity(login_intent);
 				break;
 			case R.drawable.help:
-				
+				Intent help_intent = new Intent(MainScreen.this,SCOSHelper.class);
+                startActivity(help_intent);
 				break;
 			}
 		}
@@ -183,6 +179,17 @@ public class MainScreen extends FragmentActivity {
 	protected void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
+		SharedPreferences preferences=getSharedPreferences("user", Context.MODE_PRIVATE);
+		loginState = preferences.getInt("loginState", 0);
+		
+		Intent intent = getIntent();
+		if(loginState == 1){
+        	user=(User)intent.getSerializableExtra("user");
+        	//存在问题，未在导航栏加载后执行
+        	if(null != user && !user.getOldUser()){
+        		Toast.makeText(this, "欢迎您成为 SCOS 新用户", Toast.LENGTH_LONG).show();
+        	}
+        }
 	}
 
 	@Override
