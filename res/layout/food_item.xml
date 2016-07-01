@@ -17,32 +17,37 @@
         android:layout_height="50dp"  
         android:textColor="#000000"
         android:gravity="center_vertical"  
-        android:layout_marginLeft="10dp" 
+        android:layout_marginLeft="5dp" 
         android:layout_toRightOf ="@id/food_image" 
         android:textSize="18sp" />  
-  <!-- 
-    <TextView  
-        android:layout_width="wrap_content"  
-        android:layout_height="50dp"  
-        android:text="单价：" 
-        android:textColor="#FF0000" 
-        android:paddingLeft="20dp" 
-        android:layout_toRightOf ="@id/food_name"  
-        android:textSize="12sp" />  
-     -->
+  
+ 
+    
     <TextView  
         android:id="@+id/food_price"  
         android:layout_width="wrap_content"  
         android:layout_height="50dp" 
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="5dp"
         android:textColor="#FF0000"
         android:layout_toRightOf ="@id/food_name"  
         android:gravity="center_vertical" 
         android:textSize="14sp" />  
 
+       <TextView  
+            android:id="@+id/food_count"
+	        android:layout_width="wrap_content"  
+	        android:layout_height="50dp"  
+	        android:text="库存" 
+	        android:gravity="center_vertical" 
+	        android:textColor="#0000ff" 
+	        android:paddingLeft="5dp" 
+	        android:layout_toRightOf ="@id/food_price"  
+	        android:textSize="18sp"
+	        android:textStyle="bold" />  
+        
         <Button
         android:id="@+id/food_order"
-        android:layout_width="wrap_content"
+        android:layout_width="60dp"
         android:layout_height="50dp"
         android:layout_alignParentRight="true"
         android:text="添加" />

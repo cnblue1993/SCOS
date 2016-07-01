@@ -6,10 +6,16 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.IBinder;
+import android.os.Message;
+import android.os.Messenger;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +31,7 @@ import es.source.code.model.Food;
 import es.source.code.model.FoodMenu;
 import es.source.code.model.Form;
 import es.source.code.model.User;
+import es.source.code.service.ServerObserverService;
 
 public class MainScreen extends FragmentActivity {
 	private GridView navigationView;
@@ -40,6 +47,7 @@ public class MainScreen extends FragmentActivity {
 	private static FoodMenu foodMenu;
 	
 	private static ArrayList<Form> forms;
+	
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +85,6 @@ public class MainScreen extends FragmentActivity {
 		Form unpayForm = new Form(1,0,0,new ArrayList<Food>());
 		forms.add(unpayForm);
 	}
- 
 	
  	public void setNavigation(){
 		navigation_list = new ArrayList<Map<String, Object>>();
@@ -179,13 +186,13 @@ public class MainScreen extends FragmentActivity {
 	protected void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
+		
 		SharedPreferences preferences=getSharedPreferences("user", Context.MODE_PRIVATE);
 		loginState = preferences.getInt("loginState", 0);
 		
 		Intent intent = getIntent();
 		if(loginState == 1){
         	user=(User)intent.getSerializableExtra("user");
-        	//存在问题，未在导航栏加载后执行
         	if(null != user && !user.getOldUser()){
         		Toast.makeText(this, "欢迎您成为 SCOS 新用户", Toast.LENGTH_LONG).show();
         	}
@@ -244,8 +251,8 @@ public class MainScreen extends FragmentActivity {
 				return foodMenu.getSeaFoods();
 			case 3:
 				return foodMenu.getDrinkFoods();
-
 		}
 		return null;
 	}
+	
 }

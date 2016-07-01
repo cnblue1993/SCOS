@@ -168,10 +168,11 @@ public class FoodDetailed extends Activity {
 		
 		Intent get_intent = getIntent();
 		
-		foods = MainScreen.getfoods( get_intent.getIntExtra("from", 4));
+		foods = MainScreen.getfoods(get_intent.getIntExtra("from", 0));
 		position = get_intent.getIntExtra("position", 0);
 		
 		maxIndex = foods.size() - 1;
+
 		updateUI(foods.get(position));
 		
 	}

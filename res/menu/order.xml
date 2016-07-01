@@ -13,4 +13,8 @@
 	    android:id="@+id/order_call"
 	    android:showAsAction="always"
 	    android:title="@string/order_call" />
+	<item
+	    android:id="@+id/order_service"
+	    android:showAsAction="always"
+	    android:title="@string/order_service" />
 </menu>

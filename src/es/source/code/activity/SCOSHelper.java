@@ -59,6 +59,8 @@ public class SCOSHelper extends Activity {
         mData.add(new Icon(R.drawable.call, "电话人工帮助"));
         mData.add(new Icon(R.drawable.sms, "短信帮助"));
         mData.add(new Icon(R.drawable.email, "邮件帮助"));
+        mData.add(new Icon(R.drawable.contact, "用户协议"));
+        mData.add(new Icon(R.drawable.system, "关于系统"));
 
         mAdapter = new MyAdapter<Icon>(mData, R.layout.helper_item) {
             @Override
@@ -200,21 +202,14 @@ public class SCOSHelper extends Activity {
 	    @Override
 	    public void onReceive(Context context, Intent intent)
 	    {
-	      // TODO Auto-generated method stub
-	      
-	      //mTextView01.setText(intent.getAction().toString());
 	      if (intent.getAction().equals(SMS_SEND_ACTIOIN))
-	    	//if (intent.getAction().equals(Intent.ACTION_SENDTO))
 	      {
 	        try
 	        {
-	          /* android.content.BroadcastReceiver.getResultCode()方法 */
-	          //Retrieve the current result code, as set by the previous receiver.
 	          switch(getResultCode())
 	          {
 	            case Activity.RESULT_OK:
 	              /* 发送短信成功 */
-	              //mTextView01.setText(R.string.str_sms_sent_success);
 	            	Toast.makeText(SCOSHelper.this, "求助短信发送成功", Toast.LENGTH_LONG).show();
 	            	break;	
 	            case SmsManager.RESULT_ERROR_GENERIC_FAILURE:

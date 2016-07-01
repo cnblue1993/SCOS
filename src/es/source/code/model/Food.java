@@ -14,7 +14,7 @@ public class Food implements Serializable{
 	private boolean oredered;
 	private int state; //0-未点	1-已点未下单	2-已点已下单 3-已结账菜
 	
-	public Food(int food_type,int food_img, String food_name, String food_price) {  
+	public Food(int food_type,int food_img, String food_name, String food_price,int count) {  
         super();  
         this.type = food_type;
         this.img = food_img;  
@@ -22,6 +22,7 @@ public class Food implements Serializable{
         this.price = food_price; 
         this.count = 0;
         this.oredered = false;
+        this.count = count;
     }  
   
     public Food() {  

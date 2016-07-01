@@ -26,6 +26,8 @@
 	<string name="order_food">已点菜品</string>
 	<string name="order_form">查看订单</string>
 	<string name="order_call">呼叫服务</string>
+	<string name="order_service">启动实时更新</string>
+	<string name="stop_service">停止实时更新</string>
 	
 	<!-- food order view -->
 	<string name="food_unorder">未下单菜</string>

@@ -71,6 +71,7 @@ public class FoodListAdapter extends BaseAdapter {
 		// TODO Auto-generated method stub
 		View view = convertView;
 		ViewHolder holder;
+		
 		if(view == null){
 			view = LayoutInflater.from(context).inflate(R.layout.food_item, null);
 			holder = new ViewHolder();
@@ -78,6 +79,7 @@ public class FoodListAdapter extends BaseAdapter {
 			holder.name = (TextView) view.findViewById(R.id.food_name);
 			holder.price = (TextView) view.findViewById(R.id.food_price);
 			holder.order = (Button) view.findViewById(R.id.food_order);
+			holder.count = (TextView) view.findViewById(R.id.food_count);
 			view.setTag(holder);
 		}else{
 			holder = (ViewHolder) view.getTag();
@@ -87,6 +89,7 @@ public class FoodListAdapter extends BaseAdapter {
 			holder.img.setImageResource(food.getImg());
 			holder.name.setText(food.getName());
 			holder.price.setText(food.getPrice()+" 元/份");
+			holder.count.setText("库存:"+food.getCount());
 			if(food.isOredered()){
 				holder.order.setText("退点");
 			}else{
@@ -101,7 +104,7 @@ public class FoodListAdapter extends BaseAdapter {
 	
 	class ViewHolder{
 		ImageView img;
-		TextView name, price;
+		TextView name, price,count;
 		Button order;
 	}
 	

@@ -6,8 +6,17 @@ import java.util.List;
 import java.util.Map;
 
 import android.app.ActionBar;
+import android.app.Activity;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.IBinder;
+import android.os.Message;
+import android.os.Messenger;
+import android.os.RemoteException;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -17,6 +26,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -25,7 +35,9 @@ import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.ustc.scos.R;
+import com.ustc.scos.R.string;
 
+import es.source.code.model.Food;
 import es.source.code.model.User;
 
 public class FoodView extends FragmentActivity {
@@ -37,6 +49,7 @@ public class FoodView extends FragmentActivity {
 	private String []iconName =  {"点菜", "查看订单", "登录/注册", "系统帮助"};
 	
 	private boolean navigationState = true;
+	private boolean isStartService = true;
 
 	
 	private User user;
@@ -59,7 +72,29 @@ public class FoodView extends FragmentActivity {
     private FragmentAdapter mAdapter;
 	
   //-----------------------------------------------------------------------------------------
-    
+    private final Messenger aMessenger = new Messenger(new sMessageHandle());
+	
+	private Messenger sMessenger;
+	private boolean isBound = false;
+	public static ArrayList<Food> stock;
+	
+	private ServiceConnection sc = new ServiceConnection() {
+		
+		@Override
+		public void onServiceDisconnected(ComponentName name) {
+			// TODO Auto-generated method stub
+			sMessenger = null;
+			isBound = false;
+		}
+		
+		@Override
+		public void onServiceConnected(ComponentName name, IBinder service) {
+			// TODO Auto-generated method stub
+			sMessenger = new Messenger(service);
+			isBound = true;
+		}
+	};
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -201,34 +236,25 @@ public class FoodView extends FragmentActivity {
 		}
 	}     
 
-	@Override
-	protected void onDestroy() {
-		// TODO Auto-generated method stub
-		super.onDestroy();
-	}
 
-	@Override
-	protected void onPause() {
-		// TODO Auto-generated method stub
-		super.onPause();
-	}
-
-	@Override
-	protected void onResume() {
-		// TODO Auto-generated method stub
-		super.onResume();
-	}
 
 	@Override
 	protected void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
+		Intent intent = new Intent();
+		intent.setAction("android.intent.action.SERVICE");
+		bindService(intent, sc, Context.BIND_AUTO_CREATE);
 	}
 
 	@Override
 	protected void onStop() {
 		// TODO Auto-generated method stub
 		super.onStop();
+		if(isBound){
+			unbindService(sc);
+			isBound = false;
+		}
 	}
 
 	@Override
@@ -236,12 +262,11 @@ public class FoodView extends FragmentActivity {
 		// TODO Auto-generated method stub
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.order, menu);
-		
 		return super.onCreateOptionsMenu(menu);
 	}
 
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
+	public boolean onOptionsItemSelected(MenuItem item){
 		// TODO Auto-generated method stub
 		Bundle bundle = new Bundle();
 		bundle.putSerializable("user",user);
@@ -261,12 +286,48 @@ public class FoodView extends FragmentActivity {
 			case R.id.order_call:
 				Toast.makeText(this, "order call", Toast.LENGTH_SHORT).show();
 				break;
+			case R.id.order_service:
+				Message msg;
+				if(isStartService){
+					msg = Message.obtain(null, 1);
+					msg.replyTo=aMessenger;
+					isStartService = false;
+					item.setTitle(string.stop_service);
+				}else{
+					msg = Message.obtain(null, 0);
+					isStartService = true;
+					item.setTitle(string.order_service);
+				}
+				if(isBound){
+					try {
+						sMessenger.send(msg);
+					} catch (RemoteException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				break;
 			case android.R.id.home:
 				this.finish();
 		
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	class sMessageHandle extends Handler{
 
+		@Override
+		public void handleMessage(Message msg) {
+			// TODO Auto-generated method stub
+			switch(msg.what){
+				case 10:
+					stock = (ArrayList<Food>) msg.getData().getSerializable("stock");
+					System.out.println("click msg.what:10" + stock);
+					break;
+			}
+			
+			super.handleMessage(msg);
+		}
+		
+	}
 	
 }

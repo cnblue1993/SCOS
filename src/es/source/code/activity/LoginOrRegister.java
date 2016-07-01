@@ -131,6 +131,7 @@ public class LoginOrRegister extends Activity {
 	protected void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
+		
 		SharedPreferences preferences=getSharedPreferences("user", Context.MODE_PRIVATE);
 		userName = preferences.getString("userName", null);
 		loginState = preferences.getInt("loginState", 0);

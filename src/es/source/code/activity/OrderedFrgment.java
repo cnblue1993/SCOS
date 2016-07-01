@@ -133,11 +133,7 @@ public class OrderedFrgment extends ListFragment {
 	        this.txt = txt;  
 	        this.pgbar = pgbar;  
 	        this.foodSum = foodsum;
-	    }  
-	  
-	  
-	    //该方法不运行在UI线程中,主要用于异步操作,通过调用publishProgress()方法  
-	    //触发onProgressUpdate对UI进行操作  
+	    }     
 	    @Override  
 	    protected String doInBackground(Integer... params) {  
 	        DelayOperator dop = new DelayOperator();  
